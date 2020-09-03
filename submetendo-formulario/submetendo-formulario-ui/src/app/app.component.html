@@ -1,0 +1,118 @@
+<header>
+  <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+      <div class="container">
+          <a class="navbar-brand" href="javascript:;" th:href="@{/}">Contatos</a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      </div>
+  </nav>
+</header>
+
+<main role="main">
+  <section class="my-4">
+    <div class="container">
+        <h2>Cadastro de Curso</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="criar(frm)">
+        <div class="form-group">
+          <label for="assunto">Descrição curso</label>
+          <input type="text" id="assunto" name="assunto"
+            class="form-control" placeholder="descricao"
+            [(ngModel)]="curso.assunto" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="dataInicio">Data Inicio</label>
+          <input type="date" id="dtInicio" name="dtInicio"
+            class="form-control" placeholder="Data inicial"
+            [(ngModel)]="curso.dtInicio" required/>
+           
+        </div>
+
+        <div class="form-group">
+          <label for="dtFim">Data Fim</label>
+          <input type="date" id="dtFim" name="dtFim"
+            class="form-control" placeholder="Data final"
+            [(ngModel)]="curso.dtFim" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="qtdAluno">Quantidade Aluno</label>
+          <input type="number" pattern="[0-9]*" id="qtdAluno" name="qtdAluno"
+            class="form-control" placeholder="Quantidades de Alunos"
+            [(ngModel)]="curso.qtdAluno" required/>
+        </div>
+        <div class="form-group">
+          <label for="categoria">Categoria</label>
+          <select class="custom-select" [(ngModel)]='curso.categoria' class='form-control' name="categoria">                                                                
+          <option [(ngValue)]="curso.nome">{{categoria}}</option>
+            
+        </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary"
+          [disabled]="frm.invalid">Salvar</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="mt-5">
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light text-center">
+            <tr>
+              <th>Código</th>
+
+              <th>Categoria</th>
+
+              <th class="w-15">Data ínicio</th>
+
+              <th class="w-15">Data Fim</th>
+
+              <th class="w-15">Nome</th>
+
+              <th class="w-15">Email</th>
+
+              <th class="w-15" colspan="2">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let contato of contatos">
+              <td class="text-center w-10">{{contato.id}}</td>
+
+              <td>{{contato.nome}}</td>
+
+              <td>{{contato.email}}</td>
+
+              <td>{{contato.email}}</td>
+
+              <td>{{contato.email}}</td>
+
+              <td>{{contato.nome}}</td>
+
+              <td>
+                <nav><a routerLink="/heroes">Editar</a></nav>
+              </td>
+
+              <td>
+                <nav><a routerLink="/heroes">Excluir</a></nav>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
